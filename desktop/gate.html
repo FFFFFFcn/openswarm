@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'" />
+  <title>蜂群引力AI · 邀请码验证</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      display: flex; align-items: center; justify-content: center;
+      background: #111113; color: #ededef;
+      font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      -webkit-user-select: none; user-select: none;
+    }
+    .card { width: 340px; text-align: center; }
+    .logo {
+      width: 56px; height: 56px; margin: 0 auto 20px;
+      display: block; -webkit-user-drag: none;
+    }
+    h1 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    p.sub { font-size: 13px; color: #9ba1a6; margin-bottom: 28px; }
+    input {
+      width: 100%; padding: 12px 14px; border-radius: 10px;
+      border: 1px solid #34363a; background: #1a1b1e; color: #ededef;
+      font-size: 14px; letter-spacing: 1px; text-align: center;
+      text-transform: uppercase; outline: none; transition: border-color .15s;
+    }
+    input:focus { border-color: #e5484d; }
+    button {
+      width: 100%; margin-top: 14px; padding: 12px;
+      border: none; border-radius: 10px; cursor: pointer;
+      background: #e5484d; color: #fff; font-size: 14px; font-weight: 600;
+      transition: opacity .15s;
+    }
+    button:hover { opacity: .88; }
+    button:disabled { opacity: .5; cursor: default; }
+    .error { min-height: 20px; margin-top: 12px; font-size: 13px; color: #ff8589; }
+    .hint { margin-top: 24px; font-size: 12px; color: #6f767c; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="gate-logo.png" alt="蜂群引力AI" />
+    <h1>欢迎使用 蜂群引力AI</h1>
+    <p class="sub">请输入邀请码以继续</p>
+    <input id="code" type="text" placeholder="OSWM-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" autofocus />
+    <button id="submit">验 证</button>
+    <div class="error" id="error"></div>
+    <div class="hint">邀请码仅需验证一次，之后将直接进入应用</div>
+  </div>
+  <script src="gate.js"></script>
+</body>
+</html>

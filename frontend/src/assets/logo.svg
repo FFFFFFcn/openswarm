@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" role="img" aria-label="openswarm">
+  <defs>
+    <linearGradient id="os-bg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#213183"/>
+      <stop offset="1" stop-color="#0075de"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="11" fill="url(#os-bg)"/>
+  <g stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.55" stroke-linecap="round">
+    <path d="M20 12.5 L13 24.5"/>
+    <path d="M20 12.5 L27 24.5"/>
+    <path d="M13 24.5 L27 24.5"/>
+    <path d="M20 12.5 L20 20"/>
+    <path d="M13 24.5 L20 20"/>
+    <path d="M27 24.5 L20 20"/>
+  </g>
+  <g fill="#ffffff">
+    <circle cx="20" cy="12.5" r="3"/>
+    <circle cx="13" cy="24.5" r="3"/>
+    <circle cx="27" cy="24.5" r="3"/>
+    <circle cx="20" cy="20" r="2.1" fill-opacity="0.9"/>
+  </g>
+</svg>

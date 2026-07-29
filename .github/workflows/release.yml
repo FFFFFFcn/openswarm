@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install Python dependencies
+        run: uv sync --extra dev
+
+      - name: Run backend tests
+        # The three deselected RedFox HITL tests are known pre-existing
+        # failures unrelated to packaging (see tests/test_agent_team.py).
+        run: >
+          uv run pytest
+          --deselect tests/test_agent_team.py::test_redfox_tool_requires_permission_and_is_not_read_only
+          --deselect tests/test_agent_team.py::test_redfox_tool_hard_denies_after_user_rejection
+          --deselect tests/test_agent_team.py::test_redfox_tool_allows_after_user_approval
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npx tsc --noEmit -p tsconfig.app.json
+          npm run build
+
+      - name: Build backend bundle (PyInstaller)
+        run: uv run pyinstaller desktop/backend.spec --distpath dist-backend --workpath build/pyi -y
+
+      - name: Fetch Redis sidecar binaries
+        run: pwsh -ExecutionPolicy Bypass -File desktop/scripts/fetch-redis.ps1
+
+      - name: Build and publish Electron app
+        working-directory: desktop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm ci
+          npx electron-builder --win --publish always

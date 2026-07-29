@@ -1,0 +1,60 @@
+{
+  "name": "openswarm-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "蜂群引力AI desktop shell (Electron)",
+  "repository": "https://github.com/FFFFFFcn/openswarm",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "fetch-redis": "pwsh -ExecutionPolicy Bypass -File scripts/fetch-redis.ps1",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.openswarm.desktop",
+    "productName": "蜂群引力AI",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "gate.html",
+      "gate.js",
+      "gate-logo.png"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/redis",
+        "to": "redis",
+        "filter": ["redis-server.exe", "redis-cli.exe", "*.dll"]
+      },
+      {
+        "from": "../dist-backend/openswarm-backend",
+        "to": "backend"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "FFFFFFcn",
+      "repo": "openswarm"
+    }
+  }
+}

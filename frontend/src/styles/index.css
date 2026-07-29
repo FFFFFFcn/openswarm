@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+/*
+ * 蜂群引力AI design system — red / white / black brand palette.
+ * shadcn semantic variables live in :root; Tailwind v4 maps them to color
+ * utilities via the inline @theme block below.
+ */
+:root {
+  --radius: 12px;
+
+  --background: #f7f7f8; /* cool light canvas */
+  --foreground: #111111; /* ink black */
+
+  --card: #ffffff; /* surface white */
+  --card-foreground: #111111;
+
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+
+  --primary: #1a1a1a; /* near-black — monochrome action color */
+  --primary-foreground: #ffffff;
+
+  --secondary: #1a1a1a; /* near-black — reserved accent band */
+  --secondary-foreground: #ffffff;
+
+  --muted: #f2f2f3;
+  --muted-foreground: #6b6b6b; /* neutral muted */
+
+  --accent: #f0f0f1; /* neutral hover surface */
+  --accent-foreground: #1a1a1a;
+
+  --destructive: #991b1b; /* deep red — reject / danger (semantic only) */
+  --destructive-foreground: #ffffff;
+
+  --border: #e5e5e5; /* hairline (used sparingly, prefer bg contrast) */
+  --input: #d9d9d9; /* text-input border */
+  --ring: #999999; /* focus signal — neutral */
+}
+
+@theme inline {
+  --font-sans: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei",
+    -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand red press state (legacy, unused — primary is now monochrome) */
+  --color-primary-active: #333333;
+
+  /* Ink text scale (neutral black-gray) */
+  --color-ink-secondary: #333333;
+  --color-ink-muted: #6b6b6b;
+  --color-ink-faint: #a0a0a0;
+
+  /* Decorative-only sticker palette (never paints structure) */
+  --color-sticker-sky: #62aef0;
+  --color-sticker-purple: #d6b6f6;
+  --color-sticker-purple-deep: #391c57;
+  --color-sticker-pink: #ff64c8;
+  --color-sticker-orange: #dd5b00;
+  --color-sticker-orange-deep: #793400;
+  --color-sticker-teal: #2a9d99;
+  --color-sticker-green: #1aae39;
+  --color-sticker-brown: #523410;
+
+  /* Border radius scale — generous rounding for a soft, modern feel */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    background: var(--background);
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100dvh;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  a[href],
+  summary,
+  label[for] {
+    cursor: pointer;
+  }
+}
+
+/* Tight, heavy, quiet-confident headline tracking (DESIGN.md typography) */
+.tracking-display {
+  letter-spacing: -2.125px;
+}
+.tracking-h1 {
+  letter-spacing: -1px;
+}
+.tracking-h2 {
+  letter-spacing: -0.625px;
+}
+.tracking-h3 {
+  letter-spacing: -0.25px;
+}
+.tracking-title {
+  letter-spacing: -0.125px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

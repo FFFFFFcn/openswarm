@@ -1,0 +1,2 @@
+"""Structured editorial operations domain."""
+
